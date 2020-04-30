@@ -1,12 +1,9 @@
 <?php
 
-
 $database="experiment1";
 $host="localhost";
 $user="wampuser";
 $password="turhturh";
-
-
 
 $db = new mysqli($host, $user, $password, $database);
 

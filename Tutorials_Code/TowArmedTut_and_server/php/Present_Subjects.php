@@ -2,10 +2,8 @@
 
 include 'connectDB.php';
 
-$query = "select * from survey_finished;";
- if ($result = mysqli_query($db, $query)){
-                
-           
+$query = "select * from two_arm_tut_finished;";
+ if ($result = mysqli_query($db, $query)){                        
 
  Print "<table border cellpadding=3>"; 
  
@@ -22,7 +20,4 @@ $query = "select * from survey_finished;";
           
   mysqli_free_result($result);
             mysqli_close($db);
-
 ?>
-
-
