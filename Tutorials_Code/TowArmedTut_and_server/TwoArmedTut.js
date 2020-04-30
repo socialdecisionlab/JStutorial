@@ -263,7 +263,7 @@ You chose the door by clicking on it with your mouse.  <br>There are' + NumTrial
             $('#Title').html('<H2 align = "center">You got a coin!!</H2>');
             $('#Middle').html('<img id = "Door1" src="images/coin.png" class="img-responsive center-block" >');
             SumReward = SumReward + 1;
-          //   InsertDataAjax(TrialNum,Choice,Side,RT,ThisReward)
+            InsertDataAjax(TrialNum,Choice,Side,RT,ThisReward)
             if (TrialNum + 1 < NumTrials) {
                 setTimeout(function() {
                     $('#TextBoxDiv').fadeOut(500);
@@ -286,7 +286,7 @@ You chose the door by clicking on it with your mouse.  <br>There are' + NumTrial
             $('#Title').html('<H2 align = "center">You got nothing...</H2>');
             $('#Middle').html('<img id = "Door1" src="images/frowny.png" class="img-responsive center-block" >');
 
-           //  InsertDataAjax(TrialNum,Choice,Side,RT,ThisReward);
+             InsertDataAjax(TrialNum,Choice,Side,RT,ThisReward);
             if (TrialNum + 1 < NumTrials) {
                 setTimeout(function() {
                     $('#TextBoxDiv').fadeOut(500);
@@ -315,7 +315,8 @@ You chose the door by clicking on it with your mouse.  <br>There are' + NumTrial
         $('#Stage').css('width', DispWidth);
         $('#Stage').css('min-height', thisHeight * 17 / 20);
         $('#Bottom').css('min-height', thisHeight / 20);
-
+        
+        InsertFinishedAjax()
         CreateDiv('Stage', 'TextBoxDiv');
 
         var Title = '<H2 align = "center">You have finished the experiment!<br> <br> You earned '+SumReward+' coins!<br><br> Thanks for participating!</H2>';
@@ -335,7 +336,7 @@ You chose the door by clicking on it with your mouse.  <br>There are' + NumTrial
         
       $.ajax({
                 type: 'POST',
-                data: {ID:SubID,TrialNum:TrialNum,Choice:Choice,Side:Side,RT:RT,Reward:Reward,Time:ThisTime},
+                data: {ID:SubID,TrialNum:TrialNum,Choice:Choice,Side:Side,Reward:Reward,RT:RT,Time:ThisTime},
                 async: false,
                 url: 'php/InsertTrialData.php',
                 dataType: 'json',
@@ -352,6 +353,26 @@ You chose the door by clicking on it with your mouse.  <br>There are' + NumTrial
     }
     
     
+    
+    function InsertFinishedAjax(){
+    
+      $.ajax({
+                type: 'POST',
+                data: {ID:SubID},
+                async: false,
+                url: 'php/FinishCode.php',
+                dataType: 'json',
+                success: function(r) {
+                    if (r[0].ErrorNo > 0) {
+                        Error();
+                    } 
+                }, error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        
+    }
 
     //Utility Functions
     function CreateCode() {
