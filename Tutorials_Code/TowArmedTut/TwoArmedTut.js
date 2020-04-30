@@ -12,13 +12,8 @@ $(document).ready(function() {
 
     // Initial Display Parameters
     var thisHeight = $(document).height() * 0.9;
-    var thisWidth = thisHeight * 4 / 3;
-
-    var DispWidth = thisHeight * 5 / 6;
-    var DispHeight = DispWidth / 2;
-
-    $('#Main').css('min-height', thisHeight);
-    $('#Main').css('width', thisWidth);
+   
+    $('#Main').addClass('container')
 
     Information();//Start with information sheet
 
@@ -29,7 +24,6 @@ $(document).ready(function() {
 
 
         $('#Top').css('height', thisHeight / 20);
-        $('#Stage').css('width', DispWidth);
         $('#Stage').css('min-height', thisHeight * 17 / 20);
         $('#Bottom').css('min-height', thisHeight / 20);
 
@@ -57,7 +51,6 @@ $(document).ready(function() {
 
 
         $('#Top').css('height', thisHeight / 20);
-        $('#Stage').css('width', DispWidth);
         $('#Stage').css('min-height', thisHeight * 17 / 20);
         $('#Bottom').css('min-height', thisHeight / 20);
 
@@ -95,12 +88,10 @@ $(document).ready(function() {
 
 
         $('#Top').css('height', thisHeight / 20);
-        $('#Stage').css('width', DispWidth);
         $('#Stage').css('min-height', thisHeight * 17 / 20);
         $('#Bottom').css('min-height', thisHeight / 20);
 
         var NumPages = 2;//number of pages
-        var PicHeight = DispWidth / 2;
 
         CreateDiv('Stage', 'TextBoxDiv');
 
@@ -123,7 +114,7 @@ You chose the door by clicking on it with your mouse.  <br>There are' + NumTrial
                 break;
         }
         ;
-        var ThisImage = '<div align = "center"><img src="images/Inst' + PageNum + '.png" alt="house" height="' + PicHeight + '" align="center"><br><br></div>';
+        var ThisImage = '<div class="row" align = "center"> <div class="col-md-3 "></div><div class="col-md-6"><img class= "img-fluid" src="images/Inst' + PageNum + '.png" alt="house" align="center" width = 100%></div></div>';
 
 
         $('#TextBoxDiv').html(Title + Info + ThisImage);
@@ -192,7 +183,6 @@ You chose the door by clicking on it with your mouse.  <br>There are' + NumTrial
 
 
         $('#Top').css('height', thisHeight / 20);
-        $('#Stage').css('width', DispWidth);
         $('#Stage').css('min-height', thisHeight * 17 / 20);
         $('#Bottom').css('min-height', thisHeight / 20);
 
@@ -202,8 +192,8 @@ You chose the door by clicking on it with your mouse.  <br>There are' + NumTrial
 
         var Title = '<div id = "Title"><H2 align = "center">Choose a door:</H2></div>';
 
-        var Door1 = '<img id = "Door1" src="images/Door1.png" class="img-responsive center-block" >';
-        var Door2 = '<img id = "Door2" src="images/Door2.png" class="img-responsive center-block" >';
+        var Door1 = '<img id = "Door1" src="images/Door1.png" class="img-responsive center-block myborder" >';
+        var Door2 = '<img id = "Door2" src="images/Door2.png" class="img-responsive center-block myborder" >';
 
         var RandPosition = Math.random();
         if (RandPosition < 0.5) {
@@ -312,13 +302,13 @@ You chose the door by clicking on it with your mouse.  <br>There are' + NumTrial
 
 
         $('#Top').css('height', thisHeight / 20);
-        $('#Stage').css('width', DispWidth);
         $('#Stage').css('min-height', thisHeight * 17 / 20);
         $('#Bottom').css('min-height', thisHeight / 20);
 
         CreateDiv('Stage', 'TextBoxDiv');
 
-        var Title = '<H2 align = "center">You have finished the experiment!<br> <br> You earned '+SumReward+' coins!<br><br> Thanks for participating!</H2>';
+        var Title = '<H2 align = "center">You have finished the experiment!<br> <br> You earned '+SumReward+' coins!<br><br> Thanks for participating!</H2><br> <p align = "center"> Your completion code is: '+SubID +'</p>';
+
 
         $('#TextBoxDiv').html(Title );
 
