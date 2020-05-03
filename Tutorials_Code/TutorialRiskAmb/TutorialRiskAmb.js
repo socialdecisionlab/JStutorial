@@ -3,7 +3,7 @@ $(document).ready(function () {
     
     var Init = (new Date()).getTime();
     
-    var NumTrials = 60;//Number of trials
+    var NumTrials = 10;//Number of trials
     var SubID = CreateCode();// random code for each participant
 
     var SumVec=[5,8,20,50,125]; // conditions in our experiments - levels of sums of money
@@ -61,7 +61,7 @@ $(document).ready(function () {
     // for debuging we can put information on the console
      console.log('Order: '+Order)
     // We can also present information using alert
-     alert('Ambiguity shuffled: '+ AmbiguityTrial[Order[0]])
+   //  alert('Ambiguity shuffled: '+ AmbiguityTrial[Order[0]])
     
     
 
@@ -69,73 +69,22 @@ $(document).ready(function () {
     Survey.StylesManager.applyTheme("bootstrap");
 
     // Initial Display Parameters
+    // Initial Display Parameters
     var thisHeight = $(document).height() * 0.9;
-    var thatWidth = $(document).width() * 0.9;
-
-    var thisWidth = thisHeight * 3 / 2;
-    var DispWidth = thisHeight * 5 / 6;
-    var ConfWidth = thisHeight * 5 / 6;
-    var ConfHeight = ConfWidth / 2;
-
-  
-
-    $('#Main').css('min-height', thisHeight);
-    $('#Main').css('width', thisWidth);
+   
+    $('#Main').addClass('container')
 
 
 
-
- Welcome();//Start with welcome screen
+ Information();//Start with welcome screen
 //SurveyPageDetails();
     
-    
-    function Welcome() {//This is a welcome screen
-        $('#Top').css('height', thisHeight / 20);
-        //   $('#Stage').css('width', DispWidth);
-        $('#Stage').css('min-height', thisHeight * 17 / 20);
-        $('#Bottom').css('min-height', thisHeight / 20);
-
-        CreateDiv('Stage', 'TextBoxDiv');
-
-        var Html1 = ' <div class="container">\n\
- <div class="row">\n\
-            <div class="col-md-12 text-center">\n\
- <div class="page-header ">\n\
-<h2>Welcome to the lottery experiment!</h2>\n\
-                <h1>It&#39s nice to meet you!</h1></div>\n\
-                 <div class="row ">\n\
-                       <div class="col-md-8 col-md-offset-2 text-left">\n\
-                                           <p class="lead"><br>This experiment contains two tasks:</p>\n\
-                <dl class="lead">\n\
-  <li>Sign a consent form and fill in some details.</li>\n\
-<li>Play the lottery experiment.</li>\n\
-                </dl>\n\
-<p class="lead">Ready? Press below to start!</p>\n\
-                            </div> <div class="col-md-2 "></div>\n\
-                       </div>\n\
-            </div>\n\
-        </div></div>';
-
-        $('#TextBoxDiv').html(Html1);
-
-        var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-primary btn-lg" id="toInformation" value="Start" ></div>';
-        $('#Bottom').html(Buttons);
-        // we can set up the action assigned to a button
-        $('#toInformation').click(function () {
-
-            $('#TextBoxDiv').remove();
-            $('#Stage').empty();
-            $('#Bottom').empty();
-            Information();
-        });
-    }
 
 
     function Information() {
 
 
         $('#Top').css('height', thisHeight / 20);
-        //  $('#Stage').css('width', DispWidth);
         $('#Stage').css('min-height', thisHeight * 17 / 20);
         $('#Bottom').css('min-height', thisHeight / 20);
 
@@ -146,7 +95,7 @@ $(document).ready(function () {
  <div class="row">\n\
             <div class="col-md-12 text-center">\n\
  <div class="page-header">\n\
-<h2>Information page for participants in research studies</h2>\n\
+<h2>Welcome to the lottery experiment, it&#39s nice to meet you!</h2><h4>First, some information about the experiment:</h4>\n\
                 </div>\n\
                  <div class="row">\n\
                        <div class="col-md-10 col-md-offset-1 text-left">\n\
@@ -246,8 +195,8 @@ Please confirm the following:\n\
   <div class="form-group">\n\
  <div class="form-group col-sm-3"></div>\n\
   <div class="form-group col-sm-6">\n\
-  <!--  <label for="CodeBox" class="control-label">Amazon Worker ID</label>\n\
-    <input type="text" class="form-control" id="CodeBox" required>--!>\n\
+   <label for="CodeBox" class="control-label">Amazon Worker ID</label>\n\
+    <input type="text" class="form-control" id="CodeBox" required>\n\
   </div>\n\
 <div class="form-group col-sm-3"></div>\n\
 </div>\n\
@@ -276,7 +225,7 @@ Please confirm the following:\n\
                 e.preventDefault();
 
             var ThusForm = document.getElementById('ConsentForm');
-           // var thisCode = ThusForm.elements[5].value;
+           var thisCode = ThusForm.elements[5].value;
          
             
 
@@ -372,8 +321,6 @@ $("#Stage").Survey({
            //send Ajax request to your web server.
 var Json1=[survey.data]
 
-console.log(Json1)
-
 var csv = ConvertToCSV_quest(Json1)
 
 console.log("The results are:" +csv)
@@ -441,12 +388,10 @@ console.log(num)
 
         $('#Top').css('height', thisHeight / 20);
         $('#Stage').css('min-height', thisHeight * 17 / 20);
-        $('.Stage').css('width', thisHeight);
 
         $('#Bottom').css('min-height', thisHeight / 20);
 
         var NumPages = 4; //number of pages
-        var PicWidth = ConfWidth / 1.2;
 
         CreateDiv('Stage', 'TextBoxDiv');
 
@@ -465,33 +410,25 @@ console.log(num)
         switch (PageNum) {
 
             case 1:
-                PicWidth = ConfWidth;
                 var Info = '<p class="lead">In this game you will be asked to make a series of choices between two options. On one side you will have a sure amount of 5$  and on the other side you will have a lottery option in which you either win some money or gain nothing. </p>';
 
-                ThisImage = '<div align = "center"><img src="images/Inst' + PageNum + '.png"  width="' + PicWidth + '" align="center"></div>';
 
                 break;
                  case 2:
-                PicWidth = ConfWidth;
                 var Info = '<p class="lead">All lotteries have some probability of gaining money, indicated by the blue slice, and some probability of gaining nothing, indicated by the orange slice. <br>Here is a lottery with a 75% chance of gaining 125$, compared with 100% chance of gaining 5$. </p>';
 
-                ThisImage = '<div align = "center"><img src="images/Inst' + PageNum + '.png"  width="' + PicWidth + '" align="center"></div>';
 
                 break;
                 
            case 3:
-                PicWidth = ConfWidth;
                 var Info = '<p class="lead">Some lotteries have a part of them covere by a gray obstacle, so it is not possible to see exactly the ratio of blue and red . <br>Here is a lottery which is half covered, with some probability to gain 8$, compared with 100% chance of gaining 5$..</p>';
 
-                ThisImage = '<div align = "center"><img src="images/Inst' + PageNum + '.png"  width="' + PicWidth + '" align="center"></div>';
 
                 break;
                 case 4:
-                PicWidth = ConfWidth;
                 var Info = '<p class="lead">Please consider which option you prefer on each trial carefully, the 5$ for sure or the lottery.<br> There are 60 choices in this experiment. You make a choice by clicking the mouse on the preferred lottery.</p>';
 
-                ThisImage = '<div align = "center"><img src="images/Inst' + PageNum + '.png"  width="' + PicWidth + '" align="center"></div>';
-
+           
                 break;
                 
             default:
@@ -499,7 +436,7 @@ console.log(num)
                 break;
         };
 
-
+ var ThisImage = '<div class="row" align = "center"> <div class="col-md-3 "></div><div class="col-md-6"><img class= "img-fluid" src="images/Inst' + PageNum + '.png" alt="house" align="center" width = 100%></div></div>';
 
         $('#TextBoxDiv').html(Title + Pre + Info + ThisImage + Post);
 
@@ -554,23 +491,20 @@ console.log(num)
 
 console.log(TrialNum)
         $('#Top').css('height', thisHeight / 20);
-        $('#Stage').css('width', DispWidth);
         $('#Stage').css('min-height', thisHeight * 17 / 20);
         $('#Bottom').css('min-height', thisHeight / 20);
 
        var  InitTime = (new Date()).getTime();
-     
-          CreateDiv('Stage', 'Top');
 
-     $('#Top').css({"width": DispWidth + 'px', "height": thisHeight / 32 + 'px'});
-    $('#Top').show();
-     
-     CreateDiv('Stage', 'progressBarFrame');
+     $('#Stage').append('<div class="row"> <div class="col-md-3"></div>  <div id= "progressBarFrame" class="col-md-6 nopadding"></div> </div>')
+   
 
-     $('#progressBarFrame').css({"width": DispWidth+ 'px', "height": thisHeight / 32 + 'px', "left": thisWidth * 5 / 8 + 'px', "top": thisHeight / 20, "background-color": "grey"});
+     $('#progressBarFrame').css({ "height": thisHeight / 32 + 'px', "background-color": "grey"});
     $('#progressBarFrame').show();
+              var thisWidth = $('#progressBarFrame').width() ;
+
     CreateDiv('progressBarFrame', 'progressBar');
-    $('#progressBar').css({"width": ((TrialNum+1) * DispWidth / ( NumTrials)) + 'px', "height": thisHeight / 32 + 'px', "background-color": "#A4DE78"});
+    $('#progressBar').css({"width": ((TrialNum+1) * thisWidth / (NumTrials)) + 'px', "height": thisHeight / 32 + 'px', "background-color": "#A4DE78"});
 
     $('#progressBar').show();
      
@@ -634,11 +568,8 @@ console.log(TrialNum)
 
     function InsertData(TrialNum, Choice,Side,RT) {
 
-
-        
-         if (TrialNum + 1 < NumTrials) {
-           //  InsertDataAjax(TrialNum,Choice,Side,RT);
-             
+                 if (TrialNum + 1 < NumTrials) {
+           //  InsertDataAjax(TrialNum,Choice,Side,RT);   
                 setTimeout(function() {
                     $('#TextBoxDiv').fadeOut(500);
                     setTimeout(function() {
@@ -648,9 +579,7 @@ console.log(TrialNum)
                     }, 750);
                 }, 1000);
             } else {
-               // InsertDataAjax(TrialNum,Choice,Side,RT);
-                
-                
+               // InsertDataAjax(TrialNum,Choice,Side,RT);    
                 setTimeout(function() {
                     $('#TextBoxDiv').fadeOut(500);
                     setTimeout(function() {
@@ -658,12 +587,8 @@ console.log(TrialNum)
                         $('#Bottom').empty();
                         End();
                     }, 750);
-                }, 1000);
-                
-                
-
+                }, 1000);            
             }
-
     }
     
     
@@ -697,9 +622,7 @@ console.log(TrialNum)
 
         $('.Stage').empty();
         $('.Stage').show();
-        $('.Top').css('width', thisHeight / 2);
         $('.Top').css('height', thisHeight / 12);
-        $('.Stage').css('width', ConfWidth);
         $('.Stage').css('min-height', thisHeight * 11 / 12);
         $('.Bottom').css('min-height', thisHeight / 20);
         $('.Stage').show();
@@ -811,18 +734,6 @@ console.log(TrialNum)
         return array;
     };
 
-    function CreateDisplayArray(NumBlack) {
-
-        var DispArr = [];
-        var Length = 100;
-        for (i = 0; i < Length; i++) {
-            DispArr[i] = 0;
-        }
-        for (i = 0; i < NumBlack; i++) {
-            DispArr[i] = 1;
-        }
-        return Shuffle(DispArr);
-    }
-
+  
 
 });
