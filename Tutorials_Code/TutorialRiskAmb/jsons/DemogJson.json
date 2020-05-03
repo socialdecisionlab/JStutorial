@@ -18,24 +18,15 @@ DemogJson= { "title": "Demographic Information",
     
     },
     {
-     "type": "checkbox",
+     "type": "dropdown",
      "name": "question2",
         "isRequired": true,
      "title": "What is your gender?",
      "choices": [
-      {
-       "value": "item1",
-       "text": "Female "
-      },
-      {
-       "value": "item2",
-       "text": "Male"
-      },
-      {
-       "value": "item3",
-       "text": "Other "
-      }
-     ]
+         "Female",
+         "Male",
+         "Other"
+         ]
     },
     {
      "type": "dropdown",
@@ -302,27 +293,16 @@ DemogJson= { "title": "Demographic Information",
      ]
     },
     {
-     "type": "checkbox",
+     "type": "dropdown",
      "name": "question5",
             "isRequired": true,
      "title": "What is the highest level of education you completed?",
      "choices": [
-      {
-       "value": "item1",
-       "text": "Basic "
-      },
-      {
-       "value": "item2",
-       "text": "High school degree or equivalent (e.g., GED)"
-      },
-      {
-       "value": "item3",
-       "text": " College "
-      },
-      {
-       "value": "item4",
-       "text": "Graduate degree"
-      }
+      "Basic ",
+      "High school degree or equivalent (e.g., GED)",
+      "College",
+     "Graduate degree"
+      
      ]
     }
    ]
