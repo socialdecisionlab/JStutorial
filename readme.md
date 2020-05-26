@@ -14,3 +14,6 @@ I created these tutorials as part of my 'Neuroeconomics' course at the departmen
  Do not use these material commercially.
  Acknowledgment (with a link to the lab website) will be nice.
  Feedback will be very helpful.
+ # Videos in Hebrew
+ I presented these tutorials in my course, and the videsos (Hebrew) are available here: https://drive.google.com/drive/folders/1rkjrc19JEOa9CZF-9AZ2HkFiu_MD_u-K?usp=sharing
+ 
